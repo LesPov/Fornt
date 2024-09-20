@@ -1,50 +1,55 @@
 <div class="container">
     <div class="header">
-        <div class="logo">
-            <h1>Admin<span>Panel</span></h1>
-            <h2>Crear cuenta</h2>
-            <p>Ingresa tus datos para registrarte</p>
-        </div>
+      <div class="logo">
+        <h1>Admin<span>Panel</span></h1>
+        <h2>Crear cuenta</h2>
+        <p>Ingresa tus datos para registrarte</p>
+      </div>
     </div>
     <div class="contain">
-        <!-- Usuario -->
-        <div class="input-container">
-            <input type="text" id="input-usuario" required="">
-            <label for="input-usuario" class="label">Usuario</label>
-            <div class="underline"></div>
-        </div>
-
-        <!-- Email -->
-        <div class="input-container">
-            <input type="email" id="input-email" required="">
-            <label for="input-email" class="label">Email</label>
-            <div class="underline"></div>
-        </div>
-
-        <!-- Contraseña -->
-        <div class="input-container">
-            <input type="password" id="input-password" required="">
-            <label for="input-password" class="label">Contraseña</label>
-            <div class="underline"></div>
-        </div>
-
-        <!-- Repetir Contraseña -->
-        <div class="input-container">
-            <input type="password" id="input-repetir-password" required="">
-            <label for="input-repetir-password" class="label">Repetir Contraseña</label>
-            <div class="underline"></div>
-        </div>
-        <label class="material-checkbox">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-            Acepto los términos y condiciones
-        </label>
-        <button> Registrarse
-        </button>
-        <p class="pregunt">¿Ya tienes una cuenta?<a href="">Iniciar session</a></p>
+        .
+      <!-- Usuario -->
+      <div class="input-container">
+        <input type="text" id="input-usuario" [(ngModel)]="user.username" required />
+        <label for="input-usuario" class="label">Usuario</label>
+        <div class="underline"></div>
+      </div>
+  
+      <!-- Email -->
+      <div class="input-container">
+        <input type="email" id="input-email" [(ngModel)]="user.email" required />
+        <label for="input-email" class="label">Email</label>
+        <div class="underline"></div>
+      </div>
+  
+      <!-- Contraseña -->
+      <div class="input-container">
+        <input type="password" id="input-password" [(ngModel)]="user.password" required />
+        <label for="input-password" class="label">Contraseña</label>
+        <div class="underline"></div>
+      </div>
+  
+      <!-- Repetir Contraseña -->
+      <div class="input-container">
+        <input type="password" id="input-repetir-password" [(ngModel)]="confirmPassword" required />
+        <label for="input-repetir-password" class="label">Repetir Contraseña</label>
+        <div class="underline"></div>
+      </div>
+  
+      <label class="material-checkbox">
+        <input type="checkbox" required />
+        <span class="checkmark"></span>
+        Acepto los términos y condiciones
+      </label>
+  
+      <button (click)="registerUser()"> Registrarse </button>
+  
+      <p class="pregunt">
+        ¿Ya tienes una cuenta?<a href="">Iniciar sesión</a>
+      </p>
     </div>
     <div class="footer">
-        <p>Al registrarte, aceptas nuestros <a href="">Términos de Servicio</a> y <a href="">Política de Privacidad.</a></p>
+      <p>Al registrarte, aceptas nuestros <a href="">Términos de Servicio</a> y <a href="">Política de Privacidad.</a></p>
     </div>
-
-</div>
+  </div>
+  
