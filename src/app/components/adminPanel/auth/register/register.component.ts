@@ -64,7 +64,7 @@ export class RegisterComponent {
       () => {
         // En caso de éxito, se muestra un mensaje de éxito y se redirige al usuario
         this.toastr.success(`El usuario ${this.user.username} ha sido registrado con éxito`);
-        this.router.navigate(['/email'], { queryParams: { username: this.user.username } }); // Navegamos a la ruta de confirmación de email
+        this.router.navigate(['/verificacionEmail'], { queryParams: { username: this.user.username } }); // Navegamos a la ruta de confirmación de email
       },
       (error: HttpErrorResponse) => {
         // En caso de error, mostramos un mensaje de error utilizando Toastr

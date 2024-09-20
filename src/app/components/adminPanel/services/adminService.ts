@@ -34,4 +34,17 @@ export class AdminService {
     // Envía una petición POST al endpoint de registro con los datos del usuario
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}signup`, user);
   }
+
+  verifyEmail(username: string, verificationCode: string): Observable<any> {
+    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}verify/email`, { username, verificationCode });
+  } 
+  
+
+  resendVerificationEmail(username: string, ): Observable<void> {
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}verify/email/resend`, {username});
+  }
+
+
+
+
 }

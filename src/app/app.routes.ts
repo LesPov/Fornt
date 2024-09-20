@@ -4,6 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 export const routes: Routes = [
     { path: 'home', loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent) },
     { path: 'registro', loadComponent: () => import('./components/adminPanel/auth/register/register.component').then(m => m.RegisterComponent) },
+    { path: 'verificacionEmail', loadComponent: () => import('./components/adminPanel/auth/verification/verify-email/verify-email.component').then(m => m.VerifyEmailComponent) },
     { path: 'login', loadComponent: () => import('./components/adminPanel/auth/login/login.component').then(m => m.LoginComponent) },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
