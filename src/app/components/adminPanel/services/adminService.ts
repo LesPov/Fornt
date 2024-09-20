@@ -43,7 +43,7 @@ export class AdminService {
    * @returns {Observable<void>} - Observable que emite cuando el código se ha reenviado.
    */
   resendVerificationEmail(username: string): Observable<void> {
-    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}resend/email`, { username });
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}verify/email/resend`, { username });
   }
 
   /**
@@ -69,8 +69,8 @@ export class AdminService {
    * @param {string} username - Nombre del usuario.
    * @returns {Observable<void>} - Observable que emite cuando el código es reenviado.
    */
-  resendVerificationPhone(username: string): Observable<void> {
-    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}verify/resend`, { username });
+  resendVerificationPhone(username: string, phoneNumber: string): Observable<void> {
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}verify/phone/resend`, { username, phoneNumber });
   }
 
   /**

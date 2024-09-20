@@ -93,7 +93,7 @@ export class SendPhoneComponent {
         this.toastr.success('Se ha enviado un código de verificación a tu número de teléfono.', 'Éxito');
         
         // Redirige a la página de verificación del número de teléfono
-        this.router.navigate(['/verifynumber'], { queryParams: { username: this.username, phoneNumber: formattedPhoneNumber } });
+        this.router.navigate(['/verificacionCelular'], { queryParams: { username: this.username, phoneNumber: formattedPhoneNumber } });
       },
       (error: HttpErrorResponse) => {
         if (error.error && error.error.msg) {

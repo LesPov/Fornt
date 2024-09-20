@@ -6,6 +6,7 @@ export const routes: Routes = [
     { path: 'registro', loadComponent: () => import('./components/adminPanel/auth/register/register.component').then(m => m.RegisterComponent) },
     { path: 'verificacionEmail', loadComponent: () => import('./components/adminPanel/auth/verification/verify-email/verify-email.component').then(m => m.VerifyEmailComponent) },
     { path: 'envioDeCelular', loadComponent: () => import('./components/adminPanel/auth/verification/send-phone/send-phone.component').then(m => m.SendPhoneComponent) },
+    { path: 'verificacionCelular', loadComponent: () => import('./components/adminPanel/auth/verification/verify-phone/verify-phone.component').then(m => m.VerifyPhoneComponent) },
     { path: 'login', loadComponent: () => import('./components/adminPanel/auth/login/login.component').then(m => m.LoginComponent) },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
