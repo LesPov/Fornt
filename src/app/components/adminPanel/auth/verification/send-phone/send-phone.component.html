@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <div class="body">
+        <a class="close-icon" (click)="showConfirmationDialog()">
+            <i class="fas fa-times"></i>
+        </a>
+        <div class="confirmation-overlay" *ngIf="showConfirmationMessage">
+            <div class="confirmation-box">
+                <p>¿Estás seguro de que quieres abandonar el proceso? <br> Se perderán los datos ingresados.</p>
+                <button class="btn1 btn-secondary" (click)="showConfirmationMessage = false">Cancelar</button>
+                <button class="btn1 btn-primary" routerLink="/login">Aceptar</button>
+            </div>
+        </div>
+        <div class="phone-registration">
+            <div class="container">
+                <h2>Verificación de identidad</h2>
+                <div *ngIf="showUsernameForm" class="form-floating mb-3">
+                    <input type="text" [(ngModel)]="username" class="form-control"
+                        placeholder="Ingresa el nombre de usuario">
+                    <label>Nombre de Usuario</label>
+                </div>
+
+                <div *ngIf="!showUsernameForm" class="welcome-message">
+                    <span class="username-background">{{ username }}</span> <br><br>
+                    <p> Por tuseguridad <br>
+                        Vamos a enlazar tu cuenta con el numero telefonico</p>
+                </div>
+
+                <h6>Número de Teléfono:</h6>
+
+            </div>
+            <div class="code-input">
+                <div class="form-group1 form-group-inline">
+                    <img *ngIf="selectedCountryCode === '+57'" src="../../../../../../assets/img/colombiaBandera.png"
+                        alt="" class="logo">
+                    <select id="countryCode" class="form-control" [(ngModel)]="selectedCountryCode"
+                        (change)="onCountryCodeChange()">
+                        <option *ngFor="let country of countries" [value]="country.countryCode">{{
+                            selectedCountryCode === '+57' ?
+                            '' : country.name }} ({{ country.countryCode }})</option>
+                    </select>
+                </div>
+                -
+                <div class="form-group2 form-group-inline">
+                    <input type="text" id="phoneNumber" class="form-control" [(ngModel)]="phoneNumber">
+                </div>
+            </div>
+            <button type="button" class="button" (click)="registerPhoneNumber()">
+                Enviar Numero
+            </button>
+            <div class="footer">
+                <div class="ayudas">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
     text-align: center;
 
   }
-  
+
 h2{
     margin-bottom: 50px;
 }
@@ -16,9 +16,12 @@ h2{
   .close-icon {
     position: absolute;
     top: 40px;
-    right: 40px;
-    font-size: 24px;
-    color: #333;
+    width: 30px;
+    right: 20px;
+    font-size: 25px;
+    background: #dddddd;
+    border-radius: 50%;
+    color: #000;
     text-decoration: none;
   }
   
@@ -173,10 +176,12 @@ h2{
     position: fixed;
     width: 100%;
     height: 100%;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
     z-index: 2;
   }
   
@@ -184,7 +189,7 @@ h2{
     background-color: #fff;
     padding: 20px;
     padding-bottom: 0px;
-    width: 40%;
+    width: 80%;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -204,3 +209,9 @@ h2{
     color: #fff;
     background-color: #0b03af; 
   } 
+  .footer{
+    border-top: 1px solid #757575;
+    padding: 20px;
+    margin: 15px 30px;
+    font-size: 10px;
+  }
