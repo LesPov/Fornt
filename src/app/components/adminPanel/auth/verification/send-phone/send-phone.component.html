@@ -5,7 +5,8 @@
         </a>
         <div class="confirmation-overlay" *ngIf="showConfirmationMessage">
             <div class="confirmation-box">
-                <p>¿Estás seguro de que quieres abandonar el proceso? <br> Se perderán los datos ingresados.</p>
+                <p>¿Estás seguro de que quieres abandonar el proceso?</p> 
+                <p>Se perderán los datos ingresados</p>
                 <button class="btn1 btn-secondary" (click)="showConfirmationMessage = false">Cancelar</button>
                 <button class="btn1 btn-primary" routerLink="/login">Aceptar</button>
             </div>

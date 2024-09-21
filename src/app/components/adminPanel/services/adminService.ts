@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { AdminInterface } from '../interfaces/adminInterface';
+import { LoginResponse } from '../interfaces/loginInterface';
 
 @Injectable({
   providedIn: 'root' // Esto asegura que el servicio esté disponible en toda la aplicación.
@@ -83,4 +84,20 @@ export class AdminService {
   verifyPhoneNumber(username: string, phoneNumber: string, verificationCode: string): Observable<any> {
     return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}verify/phone`, { username, phoneNumber, verificationCode });
   }
+
+
+  login(user: AdminInterface): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.myAppUrl}${this.myApiUrl}login`, user)
+      .pipe(
+        tap(response => {
+          if (response.token) {
+            localStorage.setItem('token', response.token);
+            if (response.userId) {
+              localStorage.setItem('userId', response.userId);
+            }
+          }
+        })
+      );
+  }
+  
 }

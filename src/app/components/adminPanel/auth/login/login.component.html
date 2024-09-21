@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <h1>Admin<span>Panel</span></h1>
+            <h2>Iniciar Sesion</h2>
+            <p>Ingresa tus credenciales para continuar</p>
+        </div>
+    </div>
+    <div class="contain">
+        .
+        <!-- Usuario -->
+        <div class="input-container">
+            <input type="text" id="input-usuario" [(ngModel)]="user.username" required>
+            <label for="input-usuario" class="label">Usuario</label>
+            <div class="underline"></div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="input-container">
+            <input type="password" id="input-password" [(ngModel)]="user.passwordorrandomPassword" required>
+            <label for="input-password" class="label">Contraseña</label>
+            <div class="underline"></div>
+        </div>
+        <a class="olvidPassword" routerLink="/login/passwordrecovery">¿Olvido su contraseña?</a>
+
+
+
+
+        <button type="button" (click)="loginUser()" class="button">Iniciar Sesión</button><br>
+
+        <p class="pregunt">
+            ¿No tienes una cuenta?<a href="">Registrate</a>
+        </p>
+    </div>
+    <div class="footer">
+        
+    </div>
+</div>
