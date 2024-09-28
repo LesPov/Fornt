@@ -1,15 +1,16 @@
 import { Component } from '@angular/core'; // Decorador para definir un componente en Angular
 import { AdminInterface } from '../../interfaces/adminInterface'; // Interfaz que define la estructura del usuario administrador
 import { FormsModule } from '@angular/forms'; // Módulo necesario para trabajar con formularios en Angular
-import { Router } from '@angular/router'; // Servicio de enrutamiento para navegar entre vistas
+import { Router, RouterLink } from '@angular/router'; // Servicio de enrutamiento para navegar entre vistas
 import { ToastrService } from 'ngx-toastr'; // Servicio para mostrar notificaciones al usuario
 import { AdminService } from '../../services/adminService'; // Servicio que se encarga de registrar al usuario en el backend
 import { HttpErrorResponse } from '@angular/common/http'; // Clase que maneja errores en las solicitudes HTTP
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register', // Selector que identifica este componente en las plantillas HTML
   standalone: true, // Esto indica que este componente es independiente y no depende de otros módulos
-  imports: [FormsModule], // Se importa FormsModule para habilitar la funcionalidad de formularios
+  imports: [FormsModule, CommonModule, RouterLink], // Importa módulos necesarios para los formularios y enlaces
   templateUrl: './register.component.html', // Ruta al archivo HTML que define la vista del componente
   styleUrl: './register.component.css' // Ruta al archivo CSS que contiene los estilos del componente
 })
