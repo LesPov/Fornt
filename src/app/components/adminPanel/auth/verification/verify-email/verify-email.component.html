@@ -1,58 +1,56 @@
-<!-- email-code.component.html -->
-<div class="wrapper">
+<div class="wrapper" role="main">
     <div class="body">
-        <a class="close-icon" (click)="showConfirmationDialog()">
-            <i class="ri-close-line"></i>
-        </a>
-        <div class="confirmation-overlay" *ngIf="showConfirmationMessage">
+        <button class="close-icon" (click)="showConfirmationDialog()" aria-label="Cerrar verificación">
+            <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
+
+        <div class="confirmation-overlay" *ngIf="showConfirmationMessage" role="dialog" aria-labelledby="confirmDialogTitle" aria-describedby="confirmDialogDesc">
             <div class="confirmation-box">
-                <p>¿Estás seguro de que quieres abandonar el proceso?</p> 
-                <p>Se perderán los datos ingresados</p>
+                <h2 id="confirmDialogTitle">Confirmación</h2>
+                <p id="confirmDialogDesc">¿Estás seguro de que quieres abandonar el proceso? Se perderán los datos ingresados.</p>
                 <button class="btn1 btn-secondary" (click)="showConfirmationMessage = false">Cancelar</button>
                 <button class="btn1 btn-primary" routerLink="/login">Aceptar</button>
             </div>
         </div>
+
         <div class="container">
-            <h2>Verificación de identidad</h2>
-
-
-            <div *ngIf="!showUsernameForm" class="welcome-message">
-                <p>Bienvenido:<span class="username-background">{{ username }}</span></p>
-                <p> Te hemos enviado un codigo al correo</p>
+            <h3>Verificación de identidad</h3>
+            <div *ngIf="!showUsernameForm" class="welcome-message" aria-live="polite">
+                <p>Bienvenido: <span class="username-background">{{ username }}</span></p>
+                <p>Te hemos enviado un código al correo.</p>
             </div>
-
-            <h6>Ingresa el código de 6 dígitos</h6>
-
-
         </div>
-        <div class="codigo">
+
+        <h4>Ingresa el código de 6 dígitos: </h4>
+
+        <div class="codigo" role="form" aria-labelledby="verificationCodeLabel">
             <div class="code-input">
                 <input #digit0 type="text" [(ngModel)]="verificationDigits[0]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit0, null, digit1, $event)">
+                    (keyup)="handleKeyUp(digit0, null, digit1, $event)" inputmode="numeric" aria-label="Primer dígito del código de verificación">
                 <input #digit1 type="text" [(ngModel)]="verificationDigits[1]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit1, digit0, digit2, $event)">
+                    (keyup)="handleKeyUp(digit1, digit0, digit2, $event)" inputmode="numeric" aria-label="Segundo dígito del código de verificación">
                 <input #digit2 type="text" [(ngModel)]="verificationDigits[2]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit2, digit1, digit3, $event)">-
+                    (keyup)="handleKeyUp(digit2, digit1, digit3, $event)" inputmode="numeric" aria-label="Tercer dígito del código de verificación">
+                <span aria-hidden="true">-</span>
                 <input #digit3 type="text" [(ngModel)]="verificationDigits[3]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit3, digit2, digit4, $event)">
+                    (keyup)="handleKeyUp(digit3, digit2, digit4, $event)" inputmode="numeric" aria-label="Cuarto dígito del código de verificación">
                 <input #digit4 type="text" [(ngModel)]="verificationDigits[4]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit4, digit3, digit5, $event)">
+                    (keyup)="handleKeyUp(digit4, digit3, digit5, $event)" inputmode="numeric" aria-label="Quinto dígito del código de verificación">
                 <input #digit5 type="text" [(ngModel)]="verificationDigits[5]" class="digit-input" maxlength="1"
-                    (keyup)="handleKeyUp(digit5, digit4, null, $event)">
+                    (keyup)="handleKeyUp(digit5, digit4, null, $event)" inputmode="numeric" aria-label="Sexto dígito del código de verificación">
             </div>
 
             <div *ngIf="timerVisible" class="timer">
-                Podrás pedir otro código si no te llega en <span class="timer-text">{{ formatTimeLeft() }}</span>
+                <p>Podrás pedir otro código si no te llega en <span class="timer-text">{{ formatTimeLeft() }}</span></p>
             </div>
-
 
             <button *ngIf="!timerVisible" type="button" (click)="resendVerificationCode()" class="button">
                 Enviar nuevo código al correo
             </button><br>
 
             <div class="footer">
-                <div class="ayudas">
-
+                <div class="ayudas" role="contentinfo">
+                    <!-- Puedes agregar aquí enlaces de ayuda o contacto -->
                 </div>
             </div>
         </div>

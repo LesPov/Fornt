@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="body">
-        <a class="close-icon" (click)="showConfirmationDialog()">
-            <i class="ri-close-line"></i>
-        </a>
+        <button class="close-icon" (click)="showConfirmationDialog()" aria-label="Cerrar verificación">
+            <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
         <div class="confirmation-overlay" *ngIf="showConfirmationMessage">
             <div class="confirmation-box">
                 <p>¿Estás seguro de que quieres abandonar el proceso?</p> 
@@ -13,7 +13,7 @@
         </div>
         <div class="phone-registration">
             <div class="container">
-                <h2>Verificación de identidad</h2>
+                <h3>Verificación de identidad</h3>
                 <div *ngIf="showUsernameForm" class="form-floating mb-3">
                     <input type="text" [(ngModel)]="username" class="form-control"
                         placeholder="Ingresa el nombre de usuario">
@@ -26,9 +26,10 @@
                         Vamos a enlazar tu cuenta con el numero telefonico</p>
                 </div>
 
-                <h6>Número de Teléfono:</h6>
 
             </div>
+            <h4>Número de Teléfono:</h4>
+
             <div class="code-input">
                 <div class="form-group1 form-group-inline">
                     <img *ngIf="selectedCountryCode === '+57'" src="../../../../../../assets/img/colombiaBandera.png"
@@ -40,7 +41,7 @@
                             '' : country.name }} ({{ country.countryCode }})</option>
                     </select>
                 </div>
-                -
+                <div class="line"></div>
                 <div class="form-group2 form-group-inline">
                     <input type="text" id="phoneNumber" class="form-control" [(ngModel)]="phoneNumber">
                 </div>

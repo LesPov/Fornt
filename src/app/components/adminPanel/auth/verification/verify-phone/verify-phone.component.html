@@ -1,12 +1,12 @@
 <!-- email-code.component.html -->
 <div class="wrapper">
     <div class="body">
-        <a class="close-icon" (click)="showConfirmationDialog()">
-            <i class="ri-close-line"></i>
-        </a>
+        <button class="close-icon" (click)="showConfirmationDialog()" aria-label="Cerrar verificación">
+            <i class="ri-close-line" aria-hidden="true"></i>
+        </button>
         <div class="confirmation-overlay" *ngIf="showConfirmationMessage">
             <div class="confirmation-box">
-                <p>¿Estás seguro de que quieres abandonar el proceso?</p> 
+                <p>¿Estás seguro de que quieres abandonar el proceso?</p>
                 <p>Se perderán los datos ingresados</p>
                 <button class="btn1 btn-secondary" (click)="showConfirmationMessage = false">Cancelar</button>
                 <button class="btn1 btn-primary" routerLink="/login">Aceptar</button>
@@ -22,39 +22,46 @@
                 <br>
             </div>
 
-            <h6>Ingresa el código de 6 dígitos</h6>
-
-
         </div>
-
-        <div class="code-input">
-            <input #digit0 type="text" [(ngModel)]="verificationDigits[0]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit0, null, digit1, $event)">
-            <input #digit1 type="text" [(ngModel)]="verificationDigits[1]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit1, digit0, digit2, $event)">
-            <input #digit2 type="text" [(ngModel)]="verificationDigits[2]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit2, digit1, digit3, $event)">-
-            <input #digit3 type="text" [(ngModel)]="verificationDigits[3]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit3, digit2, digit4, $event)">
-            <input #digit4 type="text" [(ngModel)]="verificationDigits[4]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit4, digit3, digit5, $event)">
-            <input #digit5 type="text" [(ngModel)]="verificationDigits[5]" class="digit-input" maxlength="1"
-                (keyup)="handleKeyUp(digit5, digit4, null, $event)">
-        </div>
-
-        <div *ngIf="timerVisible" class="timer">
-            Podrás pedir otro código si no te llega en <span class="timer-text">{{ formatTimeLeft() }}</span>
-        </div>
+        <h4>Ingresa el código de 6 dígitos</h4>
 
 
-        <button *ngIf="!timerVisible" type="button" (click)="resendVerificationCode()" class="button">
-            Enviar nuevo código
-        </button><br>
-        <div class="footer">
-            <div class="ayudas">
+        <div class="codigo" role="form" aria-labelledby="verificationCodeLabel">
+            <div class="code-input">
+                <input #digit0 type="text" [(ngModel)]="verificationDigits[0]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit0, null, digit1, $event)" inputmode="numeric"
+                    aria-label="Primer dígito del código de verificación">
+                <input #digit1 type="text" [(ngModel)]="verificationDigits[1]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit1, digit0, digit2, $event)" inputmode="numeric"
+                    aria-label="Segundo dígito del código de verificación">
+                <input #digit2 type="text" [(ngModel)]="verificationDigits[2]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit2, digit1, digit3, $event)" inputmode="numeric"
+                    aria-label="Tercer dígito del código de verificación">
+                <span aria-hidden="true">-</span>
+                <input #digit3 type="text" [(ngModel)]="verificationDigits[3]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit3, digit2, digit4, $event)" inputmode="numeric"
+                    aria-label="Cuarto dígito del código de verificación">
+                <input #digit4 type="text" [(ngModel)]="verificationDigits[4]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit4, digit3, digit5, $event)" inputmode="numeric"
+                    aria-label="Quinto dígito del código de verificación">
+                <input #digit5 type="text" [(ngModel)]="verificationDigits[5]" class="digit-input" maxlength="1"
+                    (keyup)="handleKeyUp(digit5, digit4, null, $event)" inputmode="numeric"
+                    aria-label="Sexto dígito del código de verificación">
+            </div>
 
+            <div *ngIf="timerVisible" class="timer">
+                <p>Podrás pedir otro código si no te llega en <span class="timer-text">{{ formatTimeLeft() }}</span></p>
+            </div>
+
+            <button *ngIf="!timerVisible" type="button" (click)="resendVerificationCode()" class="button">
+                Enviar nuevo código al correo
+            </button><br>
+
+            <div class="footer">
+                <div class="ayudas" role="contentinfo">
+                    <!-- Puedes agregar aquí enlaces de ayuda o contacto -->
+                </div>
             </div>
         </div>
-
     </div>
 </div>

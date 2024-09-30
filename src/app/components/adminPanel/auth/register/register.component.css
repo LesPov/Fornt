@@ -73,7 +73,6 @@ a:hover {
   left: 0;
   color: #757575;
   transition: all 0.3s ease;
-  pointer-events: none;
 }
 
 .input-container input[type="text"]:focus~.label,
@@ -106,6 +105,52 @@ a:hover {
 .input-container input[type="email"]:valid~.underline,
 .input-container input[type="password"]:valid~.underline {
   transform: scaleX(1);
+}
+.invalid-icon {
+  color: red;
+  cursor: pointer;
+}
+.ri-question-line{
+  cursor: pointer;
+
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 20px;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 /*  */

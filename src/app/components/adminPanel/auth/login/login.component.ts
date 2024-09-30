@@ -6,6 +6,7 @@ import { AdminInterface } from '../../interfaces/adminInterface';
 import { AdminService } from '../../services/adminService';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { handleLoginError, handleLoginSuccess } from './utils/loginUtils';
 
 @Component({
   selector: 'app-login',
@@ -36,65 +37,11 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.adminService.login(this.user).subscribe(
       (response) => {
-        this.handleLoginSuccess(response); // Manejamos el éxito del login
+        handleLoginSuccess(response, this.user, this.router, this.toastr); // Usamos la función del archivo utils
       },
       (error: HttpErrorResponse) => {
-        this.handleLoginError(error); // Manejamos el error en caso de fallo
+        handleLoginError(error, this.toastr); // Usamos la función del archivo utils
       }
     );
-  }
-
-  /**
-   * Función para manejar el éxito del inicio de sesión.
-   * @param response Respuesta de la API
-   */
-  private handleLoginSuccess(response: any) {
-    if (response.token) {
-      this.toastr.success(`Bienvenido, ${this.user.username}!`);
-  
-      // Almacenar token y userId en localStorage
-      this.storeUserData(response.token, response.userId);
-  
-      // Redireccionar según el rol y condiciones, optimizando el uso de rutas para SEO.
-      setTimeout(() => this.redirectUser(response), 100); // Agregamos un pequeño delay para mejorar el rendimiento del DOM.
-    }
-  }
-
-  /**
-   * Función para manejar el almacenamiento de datos en localStorage.
-   * @param token Token de autenticación
-   * @param userId ID del usuario
-   */
-  private storeUserData(token: string, userId?: string) {
-    localStorage.setItem('token', token);
-    if (userId) {
-      localStorage.setItem('userId', userId);
-    }
-  }
-
-  /**
-   * Función para manejar la redirección del usuario según su rol y otros parámetros.
-   * @param response Respuesta de la API con la información del usuario
-   */
-  private redirectUser(response: any) {
-    if (response.rol === 'admin') {
-      this.router.navigate(['/admin']);
-    } else {
-      // Si el usuario tiene una contraseña aleatoria, lo redirigimos al cambio de contraseña
-      if (response.passwordorrandomPassword === 'randomPassword') {
-        // this.router.navigate(['login/change-password'], { queryParams: { username: this.user.username } });
-      } else {
-        // this.router.navigate(['/worker']);
-      }
-    }
-  }
-
-  /**
-   * Función para manejar el error durante el inicio de sesión.
-   * @param error Error de la solicitud HTTP
-   */
-  private handleLoginError(error: HttpErrorResponse) {
-    const errorMessage = error.error?.msg || 'Hubo un error al iniciar sesión';
-    this.toastr.error(errorMessage, 'Error');
   }
 }

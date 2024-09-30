@@ -1,55 +1,77 @@
 <div class="container">
-    <div class="header">
-      <div class="logo">
-        <h1>Admin<span>Panel</span></h1>
-        <h2>Crear cuenta</h2>
-        <p>Ingresa tus datos para registrarte</p>
-      </div>
-    </div>
-    <div class="contain">
-        .
-      <!-- Usuario -->
-      <div class="input-container">
-        <input type="text" id="input-usuario" [(ngModel)]="user.username" required />
-        <label for="input-usuario" class="label">Usuario</label>
-        <div class="underline"></div>
-      </div>
-  
-      <!-- Email -->
-      <div class="input-container">
-        <input type="email" id="input-email" [(ngModel)]="user.email" required />
-        <label for="input-email" class="label">Email</label>
-        <div class="underline"></div>
-      </div>
-  
-      <!-- Contraseña -->
-      <div class="input-container">
-        <input type="password" id="input-password" [(ngModel)]="user.password" required />
-        <label for="input-password" class="label">Contraseña</label>
-        <div class="underline"></div>
-      </div>
-  
-      <!-- Repetir Contraseña -->
-      <div class="input-container">
-        <input type="password" id="input-repetir-password" [(ngModel)]="confirmPassword" required />
-        <label for="input-repetir-password" class="label">Repetir Contraseña</label>
-        <div class="underline"></div>
-      </div>
-  
-      <label class="material-checkbox">
-        <input type="checkbox" required />
-        <span class="checkmark"></span>
-        Acepto los términos y condiciones
-      </label>
-  
-      <button (click)="registerUser()"> Registrarse </button>
-  
-      <p class="pregunt">
-        ¿Ya tienes una cuenta?<a  routerLink="/login" >Iniciar sesión</a>
-      </p>
-    </div>
-    <div class="footer">
-      <p>Al registrarte, aceptas nuestros <a href="">Términos de Servicio</a> y <a href="">Política de Privacidad.</a></p>
+  <div class="header">
+    <div class="logo">
+      <h1>Admin<span>Panel</span></h1>
+      <h2>Crear cuenta</h2>
+      <p>Ingresa tus datos para registrarte</p>
     </div>
   </div>
-  
+  <div class="contain">
+    .
+    <!-- Usuario -->
+    <div class="input-container">
+      <input type="text" id="input-usuario" [(ngModel)]="user.username" required />
+      <label for="input-usuario" class="label">Usuario</label>
+      <div class="underline"></div>
+    </div>
+
+    <!-- Email -->
+    <div class="input-container">
+      <input type="email" id="input-email" [(ngModel)]="user.email" required />
+      <label for="input-email" class="label">Email </label>
+      <div class="underline"></div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="input-container">
+      <input type="password" id="input-password" [(ngModel)]="user.password" required />
+      <label for="input-password" class="label">
+        Contraseña
+        <i 
+          class="ri-question-line" 
+          [ngClass]="{'invalid-icon': !isPasswordValid}" 
+          (click)="openPasswordCriteriaModal()">
+        </i>
+      </label>
+      <div class="underline"></div>
+    </div>
+    
+    <!-- Modal de criterios de contraseña -->
+    <div *ngIf="showPasswordCriteriaModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Criterios de Contraseña</h2>
+        <ul>
+          <li>Mínimo 8 caracteres</li>
+          <li>Al menos una letra mayúscula</li>
+          <li>Al menos una letra minúscula</li>
+          <li>Al menos un número</li>
+          <li>Al menos un carácter especial (-, #, $, etc.)</li>
+        </ul>
+        <button (click)="closePasswordCriteriaModal()">Cerrar</button>
+      </div>
+    </div>
+    
+
+    <!-- Repetir Contraseña -->
+    <div class="input-container">
+      <input type="password" id="input-repetir-password" [(ngModel)]="confirmPassword" required />
+      <label for="input-repetir-password" class="label">Repetir Contraseña</label>
+      <div class="underline"></div>
+    </div>
+
+    <label class="material-checkbox">
+      <input type="checkbox" required />
+      <span class="checkmark"></span>
+      Acepto los términos y condiciones
+    </label>
+
+    <button (click)="registerUser()"> Registrarse </button>
+
+    <p class="pregunt">
+      ¿Ya tienes una cuenta?<a routerLink="/login">Iniciar sesión</a>
+    </p>
+  </div>
+  <div class="footer">
+    <p>Al registrarte, aceptas nuestros <a href="">Términos de Servicio</a> y <a href="">Política de Privacidad.</a></p>
+  </div>
+</div>
