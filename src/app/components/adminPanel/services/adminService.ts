@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { AdminInterface } from '../interfaces/adminInterface';
-import { LoginResponse } from '../interfaces/loginInterface';
+import { LoginResponse } from '../interfaces/loginAdminInterface';
 
 @Injectable({
   providedIn: 'root' // Esto asegura que el servicio esté disponible en toda la aplicación.

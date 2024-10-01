@@ -11,6 +11,6 @@ export interface AdminInterface {
     verificationCodeExpiration?: Date | null;
     phoneNumber?: string | null;
     randomPassword?: string | null;
-    passwordorrandomPassword?: string; // 
+    passwordorrandomPassword?: string; 
   }
   
