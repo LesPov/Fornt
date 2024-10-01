@@ -8,6 +8,9 @@ export const routes: Routes = [
     { path: 'envioDeCelular', loadComponent: () => import('./components/adminPanel/auth/verification/send-phone/send-phone.component').then(m => m.SendPhoneComponent) },
     { path: 'verificacionCelular', loadComponent: () => import('./components/adminPanel/auth/verification/verify-phone/verify-phone.component').then(m => m.VerifyPhoneComponent) },
     { path: 'login', loadComponent: () => import('./components/adminPanel/auth/login/login.component').then(m => m.LoginComponent) },
+    { path: 'loginRecovery', loadComponent: () => import('./components/adminPanel/auth/login/password/request-password/request-password.component').then(m => m.RequestPasswordComponent) },
+    { path: 'loginChange', loadComponent: () => import('./components/adminPanel/auth/login/password/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
+
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
 ];

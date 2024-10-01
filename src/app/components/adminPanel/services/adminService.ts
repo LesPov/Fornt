@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { AdminInterface } from '../interfaces/adminInterface';
@@ -98,6 +98,15 @@ export class AdminService {
           }
         })
       );
+  }
+
+  requestPasswordReset(usernameOrEmail: string): Observable<void> {
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}forgotPassword`, { usernameOrEmail });
+  }
+
+  resetPassword(usernameOrEmail: string, randomPassword: string, newPassword: string, token: string): Observable<void> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}resetPassword`, { usernameOrEmail, randomPassword, newPassword }, { headers });
   }
   
 }

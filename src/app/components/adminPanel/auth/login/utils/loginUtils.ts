@@ -1,7 +1,7 @@
-// src/app/utils/loginUtils.ts
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AdminInterface } from '../../../interfaces/adminInterface';
 
 /**
  * Maneja el éxito del inicio de sesión.
@@ -18,7 +18,28 @@ export function handleLoginSuccess(response: any, user: any, router: Router, toa
     storeUserData(response.token, response.userId);
 
     // Redireccionar según el rol y condiciones
-    setTimeout(() => redirectUser(response, router), 100);
+    setTimeout(() => redirectUser(user,response, router), 100);
+  }
+}
+
+/**
+ * Redirecciona al usuario según el rol y otros parámetros.
+ * @param response Respuesta de la API con la información del usuario
+ * @param router Router para redireccionar
+ */
+export function redirectUser(user: AdminInterface,response: any, router: Router) {
+  // Verificar si el usuario tiene una contraseña aleatoria
+  if (response.passwordorrandomPassword === 'randomPassword') {
+    // Redirigir a la página de cambio de contraseña con el username en query params
+    router.navigate(['/loginChange'], { queryParams: { username: user.username } });
+  }
+  // Verificar si el rol es admin y no tiene una contraseña aleatoria
+  else if (response.rol === 'admin') {
+    router.navigate(['/admin']);
+  }
+  // Redirigir a la home si es un usuario normal con una contraseña no aleatoria
+  else {
+    router.navigate(['/home']);
   }
 }
 
@@ -35,26 +56,11 @@ export function storeUserData(token: string, userId?: string) {
 }
 
 /**
- * Redirecciona al usuario según el rol y otros parámetros.
- * @param response Respuesta de la API con la información del usuario
- * @param router Router para redireccionar
- */
-export function redirectUser(response: any, router: Router) {
-  if (response.rol === 'admin') {
-    router.navigate(['/admin']);
-  } else if (response.passwordorrandomPassword === 'randomPassword') {
-    // router.navigate(['login/change-password'], { queryParams: { username: response.username } });
-  } else {
-    router.navigate(['/home']);
-  }
-}
-
-/**
  * Maneja el error durante el inicio de sesión.
  * @param error Error de la solicitud HTTP
  * @param toastr ToastrService para mostrar mensajes de error
  */
 export function handleLoginError(error: HttpErrorResponse, toastr: ToastrService) {
-  const errorMessage = error.error?.msg || 'Hubo un error al iniciar sesión';
+  const errorMessage = error.error.msg || 'Hubo un error al iniciar sesión';
   toastr.error(errorMessage, 'Error');
 }
