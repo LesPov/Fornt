@@ -7,6 +7,6 @@ export const adminRoutes: Routes = [
   { path: 'envioDeCelular', loadComponent: () => import('../auth//verification/send-phone/send-phone.component').then(m => m.SendPhoneComponent) },
   { path: 'verificacionCelular', loadComponent: () => import('../auth//verification/verify-phone/verify-phone.component').then(m => m.VerifyPhoneComponent) },
   { path: 'login', loadComponent: () => import('../auth//login/login.component').then(m => m.LoginComponent) },
-  { path: 'loginRecovery', loadComponent: () => import('../auth//login/password/request-password/request-password.component').then(m => m.RequestPasswordComponent) },
-  { path: 'loginChange', loadComponent: () => import('../auth//login/password/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
+  { path: 'loginRecovery', loadComponent: () => import('../auth//login/password/request/request-password.component').then(m => m.RequestPasswordComponent) },
+  { path: 'loginChange', loadComponent: () => import('../auth//login/password/change/change-password.component').then(m => m.ChangePasswordComponent) },
 ];
