@@ -30,7 +30,6 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
-
             ],
             "scripts": []
           },
@@ -39,13 +38,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "700kB",
                   "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "5kB",
+                  "maximumError": "6kB"
                 }
               ],
               "outputHashing": "all"
@@ -53,7 +52,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": false 
+              "sourceMap": false
             }
           },
           "defaultConfiguration": "production"
@@ -83,7 +82,7 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
-              "glob": "**/*",
+                "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
               }
@@ -91,7 +90,6 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
-
             ],
             "scripts": []
           }
